@@ -6,6 +6,12 @@
 <title>Access Tool</title>
 
 <style>
+
+  input, select, button {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
 body{
   margin:0;
   font-family:Arial;
@@ -146,10 +152,8 @@ window.login = () => {
       return signInWithEmailAndPassword(auth, email.value, password.value);
     })
     .then(() => {
-
       document.getElementById("login").classList.add("hidden");
       document.getElementById("tool").classList.remove("hidden");
-
     })
     .catch(e => {
       error.textContent = e.message;
