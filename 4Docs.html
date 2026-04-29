@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>4Docs Tool</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:#f8fafc;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+/* CENTER BOX */
+.card{
+  width:320px;
+  background:#fff;
+  padding:25px;
+  border-radius:16px;
+  box-shadow:0 10px 40px rgba(0,0,0,0.1);
+  text-align:center;
+}
+
+/* INPUT */
+input, select{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border-radius:10px;
+  border:1px solid #ddd;
+}
+
+/* BUTTON */
+.main-btn{
+  width:100%;
+  padding:12px;
+  background:#84cc16;
+  color:white;
+  border:none;
+  border-radius:20px;
+  margin-top:10px;
+  cursor:pointer;
+}
+
+/* ACTION BUTTONS */
+.actions{
+  margin-top:20px;
+}
+
+.actions button{
+  margin:5px;
+  padding:10px 18px;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+.logout{
+  background:#ef4444;
+  color:white;
+}
+
+.whatsapp{
+  background:#25D366;
+  color:white;
+}
+
+/* FOOTER */
+.footer{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  text-align:center;
+  font-size:12px;
+  padding:10px;
+}
+
+input, select, button {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.actions {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.actions button {
+  margin: 6px;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <h3>PayPal Payment</h3>
+
+  <input placeholder="PayPal Email">
+  <input placeholder="Product Name">
+  <input placeholder="Price">
+
+  <select>
+    <option>USD - US Dollar</option>
+  </select>
+
+  <button class="main-btn">Buy Now</button>
+
+</div> <!-- END CARD -->
+
+<div class="actions">
+  <button class="logout" onclick="logout()">Logout</button>
+  <button class="whatsapp" onclick="contact()">WhatsApp</button>
+</div>
+
+<div class="footer">
+  © 2026 DraQing • All rights reserved
+</div>
+
+<script>
+function logout(){
+  window.parent.logout(); // REAL LOGOUT
+}
+
+function contact(){
+  window.open("https://wa.me/44XXXXXX");
+}
+</script>
+
+</body>
+</html>
