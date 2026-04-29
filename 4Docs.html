@@ -11,14 +11,20 @@ body{
   background:#f8fafc;
   height:100vh;
   display:flex;
-  flex-direction:column;
   justify-content:center;
   align-items:center;
 }
 
-/* CENTER CARD */
+/* GLOBAL INPUT FIX */
+input, select, button {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* CARD */
 .card{
-  width:340px;
+  width:320px;
   background:#fff;
   padding:25px;
   border-radius:18px;
@@ -26,18 +32,16 @@ body{
   text-align:center;
 }
 
-/* INPUTS */
+/* INPUT */
 input, select{
-  width:100%;
   padding:12px;
   margin:8px 0;
   border-radius:10px;
   border:1px solid #ddd;
 }
 
-/* MAIN BUTTON */
+/* BUTTON */
 .main-btn{
-  width:100%;
   padding:14px;
   background:#84cc16;
   color:white;
@@ -45,29 +49,6 @@ input, select{
   border-radius:25px;
   margin-top:10px;
   cursor:pointer;
-}
-
-/* WALLET COPY */
-.wallet{
-  font-size:12px;
-  margin-top:10px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:6px;
-}
-
-.copy{
-  cursor:pointer;
-  font-size:14px;
-  color:#84cc16;
-}
-
-/* PRICE */
-.price{
-  margin-top:10px;
-  font-weight:bold;
-  font-size:16px;
 }
 
 /* BOTTOM ACTIONS */
@@ -80,20 +61,20 @@ input, select{
 
 /* BUTTONS */
 .logout{
-  padding:10px 20px;
   background:#ef4444;
   color:white;
-  border:none;
+  padding:10px 20px;
   border-radius:20px;
+  border:none;
   cursor:pointer;
 }
 
 .whatsapp{
-  padding:10px 18px;
   background:#25D366;
   color:white;
-  border:none;
+  padding:10px 18px;
   border-radius:20px;
+  border:none;
   cursor:pointer;
   font-size:13px;
 }
@@ -106,12 +87,6 @@ input, select{
   text-align:center;
   font-size:12px;
   padding:8px;
-}
-
-input, select, button {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
 }
 </style>
 </head>
@@ -130,20 +105,10 @@ input, select, button {
     <option>USD - US Dollar</option>
   </select>
 
-  <!-- PRICE ABOVE BUTTON -->
-  <div class="price">Only $12/month</div>
-
   <button class="main-btn">Buy Now</button>
-
-  <!-- WALLET COPY -->
-  <div class="wallet">
-    YOUR_WALLET_ADDRESS
-    <span class="copy" onclick="copyWallet()">📋</span>
-  </div>
 
 </div>
 
-<!-- BOTTOM BUTTONS -->
 <div class="bottom-actions">
   <button class="logout" onclick="logout()">Logout</button>
   <button class="whatsapp" onclick="contact()">WhatsApp</button>
@@ -160,11 +125,6 @@ function logout(){
 
 function contact(){
   window.open("https://wa.me/44XXXXXX");
-}
-
-function copyWallet(){
-  navigator.clipboard.writeText("YOUR_WALLET_ADDRESS");
-  alert("Wallet copied!");
 }
 </script>
 
