@@ -6,12 +6,6 @@
 <title>Access Tool</title>
 
 <style>
-
-  input, select, button {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-}
 body{
   margin:0;
   font-family:Arial;
@@ -20,6 +14,13 @@ body{
   justify-content:center;
   align-items:center;
   height:100vh;
+}
+
+/* GLOBAL INPUT FIX */
+input, select, button {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* CARD */
@@ -32,13 +33,8 @@ body{
   box-shadow:0 10px 40px rgba(0,0,0,0.1);
 }
 
-img{
-  width:180px;
-  margin:15px 0;
-}
-
+/* BUTTON */
 button{
-  width:100%;
   padding:14px;
   border:none;
   border-radius:25px;
@@ -48,18 +44,23 @@ button{
   margin-top:10px;
 }
 
+/* INPUT */
 input{
-  width:100%;
   padding:12px;
   margin:8px 0;
   border-radius:10px;
   border:1px solid #ddd;
 }
 
-/* WHATSAPP BUTTON */
+/* WHATSAPP */
 .whatsapp{
   background:#25D366;
+  font-size:13px;
+  padding:10px;
 }
+
+/* HIDDEN */
+.hidden{display:none;}
 
 /* TOOL */
 #tool iframe{
@@ -67,9 +68,6 @@ input{
   height:100vh;
   border:none;
 }
-
-/* HIDDEN */
-.hidden{display:none;}
 </style>
 </head>
 
@@ -80,18 +78,22 @@ input{
 
   <h2>Pay to Access</h2>
 
-  <!-- FIX QR IMAGE -->
-  <img src="qr.png">
+  <img src="qr.png" style="width:180px;margin:15px 0;">
 
   <p><b>USDT Wallet:</b></p>
-  <p style="font-size:12px;">YOUR_WALLET_ADDRESS</p>
 
-  <p>Send screenshot via WhatsApp</p>
+  <div style="display:flex;justify-content:center;gap:6px;font-size:12px;">
+    <span id="wallet">YOUR_WALLET_ADDRESS</span>
+    <span onclick="copyWallet()" style="cursor:pointer;color:#16a34a;">📋</span>
+  </div>
 
-  <!-- WHATSAPP BUTTON -->
+  <p style="margin-top:10px;">Send screenshot via WhatsApp</p>
+
   <button class="whatsapp" onclick="contact()">Contact WhatsApp</button>
 
-  <p style="margin-top:10px;"><b>Only $12/month</b></p>
+  <p style="margin-top:12px;font-weight:bold;font-size:16px;">
+    Only $12/month
+  </p>
 
   <button onclick="showLogin()">Connect to your account</button>
 
@@ -116,7 +118,6 @@ input{
   <iframe src="4Docs.html"></iframe>
 </div>
 
-<!-- FIREBASE -->
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
@@ -129,10 +130,10 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAx4ll0Pb51oWxrroGSk-odIVzBq3zpJI4",
-  authDomain: "cashtool-e5fbf.firebaseapp.com",
-  projectId: "cashtool-e5fbf",
-  appId: "1:453853626540:web:d8bb5eb9bf31b3e2cfdf09"
+  apiKey: "YOUR_KEY",
+  authDomain: "YOUR_DOMAIN",
+  projectId: "YOUR_ID",
+  appId: "YOUR_APP_ID"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -144,9 +145,8 @@ window.showLogin = () => {
   document.getElementById("login").classList.remove("hidden");
 };
 
-/* LOGIN FIX */
+/* LOGIN */
 window.login = () => {
-
   setPersistence(auth, browserSessionPersistence)
     .then(() => {
       return signInWithEmailAndPassword(auth, email.value, password.value);
@@ -155,17 +155,18 @@ window.login = () => {
       document.getElementById("login").classList.add("hidden");
       document.getElementById("tool").classList.remove("hidden");
     })
-    .catch(e => {
-      error.textContent = e.message;
-    });
-
+    .catch(e => error.textContent = e.message);
 };
 
-/* LOGOUT FIX */
+/* LOGOUT */
 window.logout = () => {
-  signOut(auth).then(() => {
-    location.reload();
-  });
+  signOut(auth).then(()=>location.reload());
+};
+
+/* COPY */
+window.copyWallet = () => {
+  navigator.clipboard.writeText(document.getElementById("wallet").innerText);
+  alert("Wallet copied!");
 };
 
 /* WHATSAPP */
